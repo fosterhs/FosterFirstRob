@@ -31,20 +31,21 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
       Scheduler.getInstance().run();
 
-      if(camera0.isEnabled() && !SmartDashboard.getBoolean("Camera 0", true))
-          cameraServer.removeCamera(camera0.getName());
-      else if(!camera0.isEnabled() && SmartDashboard.getBoolean("Camera 0", true))
-          cameraServer.startAutomaticCapture(camera0.getName(), camera0.getPath());
-
-      if(camera1.isEnabled() && !SmartDashboard.getBoolean("Camera 1", true))
-          cameraServer.removeCamera(camera1.getName());
-      else if(!camera1.isEnabled() && SmartDashboard.getBoolean("Camera 1", true))
-          cameraServer.startAutomaticCapture(camera1.getName(), camera1.getPath());
+//      if(camera0.isEnabled() && !SmartDashboard.getBoolean("Camera 0", true))
+//          cameraServer.removeCamera(camera0.getName());
+//      else if(!camera0.isEnabled() && SmartDashboard.getBoolean("Camera 0", true))
+//          cameraServer.startAutomaticCapture(camera0.getName(), camera0.getPath());
+//
+//      if(camera1.isEnabled() && !SmartDashboard.getBoolean("Camera 1", true))
+//          cameraServer.removeCamera(camera1.getName());
+//      else if(!camera1.isEnabled() && SmartDashboard.getBoolean("Camera 1", true))
+//          cameraServer.startAutomaticCapture(camera1.getName(), camera1.getPath());
 
   }
 
   @Override
   public void autonomousInit() {
+      cameraServer.removeCamera(camera0.getName());
   }
 
   @Override
