@@ -8,7 +8,7 @@ import  com.ctre.phoenix.motorcontrol.can.VictorSPX;
 public class Robot extends TimedRobot {
   private MyOI oi = new MyOI();
   private Drivebase drivebase = new Drivebase();
-  private TankDrive td = new TankDrive(drivebase,oi);
+  private TankDrive td = new TankDrive(drivebase, oi);
   @Override
   public void robotInit() {
   }
@@ -28,6 +28,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
+    System.out.println("Running teleopInit()");
     Scheduler.getInstance().add(td);
   }
 

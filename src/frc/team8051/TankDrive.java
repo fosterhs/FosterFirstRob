@@ -12,6 +12,9 @@ public class TankDrive extends Command {
     }
 
     public void execute(){
+        // double d1 = oi.getRightJoystick();
+        // double d2 = oi.getLeftJoystick();
+        // System.out.println(d1 + " " + d2);
         drivebase.setSpeed(oi.getRightJoystick(), oi.getLeftJoystick());
     }
     @Override
