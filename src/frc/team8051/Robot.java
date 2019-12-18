@@ -1,16 +1,21 @@
-package frc.team1983;
+package frc.team8051;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import  com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 public class Robot extends TimedRobot {
+  private MyOI oi = new MyOI();
+  private Drivebase drivebase = new Drivebase();
+  private TankDrive td = new TankDrive(drivebase,oi);
   @Override
   public void robotInit() {
   }
 
   @Override
   public void robotPeriodic() {
-      Scheduler.getInstance().run();
+    Scheduler.getInstance().run();
   }
 
   @Override
@@ -23,6 +28,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
+    Scheduler.getInstance().add(td);
   }
 
   @Override

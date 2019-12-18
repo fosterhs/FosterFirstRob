@@ -1,10 +1,10 @@
 plugins {
     id "java"
-    id "edu.wpi.first.GradleRIO" version "2019.1.1"
+    id "edu.wpi.first.GradleRIO" version "2019.3.2"
     id "idea"
 }
 
-def ROBOT_MAIN_CLASS = "frc.team1983.Main"
+def ROBOT_MAIN_CLASS = "frc.team8051.Main"
 
 sourceSets {
     main.java.srcDirs = ['src']
