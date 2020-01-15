@@ -1,4 +1,4 @@
-package frc.team8051.commands;
+package frc.team8051.commands.drivebase;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.team8051.services.OI;
@@ -14,7 +14,7 @@ public class RunTankDrive extends Command {
     }
 
     public void execute(){
-
+        drivebase.set(oi.getRightYAxis(), oi.getLeftYAxis());
     }
     @Override
     protected boolean isFinished() {

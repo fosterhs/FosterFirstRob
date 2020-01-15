@@ -1,4 +1,4 @@
-package frc.team8051.commands;
+package frc.team8051.commands.drivebase;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.team8051.services.OI;
@@ -13,7 +13,9 @@ public class RunDifferentialDrive extends Command {
         this.oi = oi;
     }
     public double range(double x) {
-        return x < -1.0 ? -1.0 : (x > 1.0 ? 1.0 : x);
+        if(x < -1.0) return -1.0;
+        else if(x > 1.0) return 1.0;
+        else return x;
     }
 
     public void execute() {
