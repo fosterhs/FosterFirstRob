@@ -1,17 +1,24 @@
-package subsystems;
+package frc.team8051.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Drivebase extends Subsystem {
-    VictorSPX rmotor = new VictorSPX(14);
-    VictorSPX lmotor = new VictorSPX(15);
+    VictorSPX rightMotor = new VictorSPX(14);
+    VictorSPX leftMotor = new VictorSPX(15);
 
-    public void setSpeed(double right, double left){
+    public void set(double right, double left) {
+        setRight(right);
+        setLeft(left);
+    }
 
-         rmotor.set(ControlMode.PercentOutput, right);
-         lmotor.set(ControlMode.PercentOutput, left);
+    public void setRight(double x) {
+        rightMotor.set(ControlMode.PercentOutput, x);
+    }
+
+    public void setLeft(double x) {
+        leftMotor.set(ControlMode.PercentOutput, -x);
     }
 
     @Override

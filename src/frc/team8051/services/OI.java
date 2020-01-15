@@ -3,26 +3,22 @@ package frc.team8051.services;
 
 import edu.wpi.first.wpilibj.Joystick;
 
-public class MyOI {
-    //public Joystick rightJoystick = new Joystick(0);
-    //public Joystick leftJoystick = new Joystick(1);
-
-    public Joystick joystick = new Joystick(1);
-
-    public double getRightJoystick() {
-        return joystick.getRawAxis(1);
+public class OI {
+    public Joystick joystick;
+    public OI() {
+        joystick = new Joystick(1);
     }
 
-    public double getLeftJoystick(){
+    public double gitRightXAxis() {
+        return joystick.getRawAxis(4);
+    }
+    public double getRightYAxis() {
         return joystick.getRawAxis(5);
     }
-
-    //public double getRightJoystick() {
-        //return rightJoystick.getY();
-   // }
-
-    //public double getLeftJoystick() {
-      //  return leftJoystick.getY();
-    //}
-
+    public double getLeftXAxis() {
+        return joystick.getRawAxis(0);
+    }
+    public double getLeftYAxis() {
+        return joystick.getRawAxis(1);
+    }
 }

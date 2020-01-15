@@ -1,4 +1,4 @@
-package frc.team8051.commands.drivebase;
+package frc.team8051.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.team8051.services.OI;
@@ -14,10 +14,7 @@ public class RunTankDrive extends Command {
     }
 
     public void execute(){
-        // double d1 = oi.getRightJoystick();
-        // double d2 = oi.getLeftJoystick();
-        // System.out.println(d1 + " " + d2);
-        drivebase.setSpeed(oi.getRightJoystick(), oi.getLeftJoystick());
+
     }
     @Override
     protected boolean isFinished() {
