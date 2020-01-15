@@ -4,11 +4,11 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.team8051.services.OI;
 import frc.team8051.subsystems.Drivebase;
 
-public class TankDrive extends Command {
+public class RunTankDrive extends Command {
     private Drivebase drivebase;
     private OI oi;
 
-    public TankDrive(Drivebase drivebase, OI oi) {
+    public RunTankDrive(Drivebase drivebase, OI oi) {
         this.oi = oi;
         this.drivebase = drivebase;
     }
