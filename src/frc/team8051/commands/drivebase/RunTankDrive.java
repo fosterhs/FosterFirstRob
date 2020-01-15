@@ -1,12 +1,14 @@
-package frc.team8051;
+package frc.team8051.commands.drivebase;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.team8051.services.OI;
+import frc.team8051.subsystems.Drivebase;
 
 public class TankDrive extends Command {
     private Drivebase drivebase;
-    private MyOI oi;
+    private OI oi;
 
-    public TankDrive(Drivebase drivebase, MyOI oi) {
+    public TankDrive(Drivebase drivebase, OI oi) {
         this.oi = oi;
         this.drivebase = drivebase;
     }

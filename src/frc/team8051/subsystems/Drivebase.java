@@ -1,4 +1,4 @@
-package frc.team8051;
+package subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.ControlMode;
