@@ -7,17 +7,26 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
 public class Robot extends TimedRobot {
-  private Drivebase drivebase = new Drivebase();
-  private OI oi = new OI();
+  private static Robot robot = null;
+  private Drivebase drivebase;
+  private OI oi;
   // private RunDifferentialDrive diffDrive = new RunDifferentialDrive(drivebase, oi);
-  private RunTankDrive tankDrive = new RunTankDrive(drivebase, oi);
+  private RunTankDrive tankDrive;
+
+  Robot() {
+      robot = this;
+      drivebase = new Drivebase();
+      oi = new OI();
+      oi.initializeBind();
+  }
+
   @Override
   public void robotInit() {
   }
 
   @Override
   public void robotPeriodic() {
-
+    Scheduler.getInstance().run();
   }
 
   @Override
@@ -31,8 +40,8 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() {
     System.out.println("Running teleopInit()");
-    // Scheduler.getInstance().add(diffDrive);
-    Scheduler.getInstance().add(tankDrive);
+    //Scheduler.getInstance().add(diffDrive);
+    //Scheduler.getInstance().add(tankDrive);
   }
 
   @Override
@@ -42,5 +51,24 @@ public class Robot extends TimedRobot {
 
   @Override
   public void testPeriodic() {
+
   }
+
+  public static Robot getInstance() {
+    if(robot == null)
+      robot = new Robot();
+
+    return robot;
+  }
+
+  public OI getOI() {
+    // System.out.println("Running Oi");
+    return oi;
+  }
+
+  public Drivebase getDrivebase() {
+    return drivebase;
+  }
+
+
 }
