@@ -2,17 +2,17 @@ package frc.team8051;
 import frc.team8051.subsystems.Drivebase;
 import frc.team8051.commands.drivebase.RunDifferentialDrive;
 import frc.team8051.commands.drivebase.RunTankDrive;
-import frc.team8051.commands.drivebase.DriveStraight;
-import frc.team8051.commands.drivebase.PIDDrive;
-
 import frc.team8051.services.OI;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
 public class Robot extends TimedRobot {
-  private static Robot robot;
+  private static Robot robot = null;
   private Drivebase drivebase;
   private OI oi;
+  // private RunDifferentialDrive diffDrive = new RunDifferentialDrive(drivebase, oi);
+  private RunTankDrive tankDrive;
+
   Robot() {
       robot = this;
       drivebase = new Drivebase();
@@ -22,15 +22,11 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotInit() {
-
   }
 
   @Override
   public void robotPeriodic() {
-    System.out.println(drivebase.getLeftEncoder().getDistance() + " left encoder reading");
-    System.out.println(drivebase.getRightEncoder().getDistance() + " right encoder reading");
-    System.out.println(oi.getRightYAxis() + " oi right Y axis");
-    System.out.println(oi.getLeftYAxis() + " oi left Y axis");
+    Scheduler.getInstance().run();
   }
 
   @Override
@@ -39,13 +35,13 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousPeriodic() {
-
   }
 
   @Override
   public void teleopInit() {
     System.out.println("Running teleopInit()");
-    drivebase.zeroEncoder();
+    //Scheduler.getInstance().add(diffDrive);
+    //Scheduler.getInstance().add(tankDrive);
   }
 
   @Override
@@ -61,10 +57,12 @@ public class Robot extends TimedRobot {
   public static Robot getInstance() {
     if(robot == null)
       robot = new Robot();
+
     return robot;
   }
 
   public OI getOI() {
+    // System.out.println("Running Oi");
     return oi;
   }
 
