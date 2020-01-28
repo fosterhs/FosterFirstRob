@@ -12,7 +12,6 @@ public class PIDDrive extends PIDCommand {
         super(0.30, 0.6, 0.0);
         this.drivebase = drivebase;
         this.distance = distance;
-        System.out.println("pid command");
 
         setSetpoint(this.distance);
         getPIDController().setAbsoluteTolerance(0.1);
