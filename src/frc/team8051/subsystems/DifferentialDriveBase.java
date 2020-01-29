@@ -1,24 +1,29 @@
 package frc.team8051.subsystems;
-import edu.wpi.first.wpilibj.SendableBase;
-import edu.wpi.first.wpilibj.drive.RobotDriveBase;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-private VictorSPX rightMotor;
-private VictorSPX leftMotor;
-public class DifferentialDriveBase extends DifferntialDrive {
 
-    public static final double kDefaultQuickStopAlpha;
+// Wrapper Class for differential drivebase
+public class DifferentialDriveBase {
+    private final WPI_VictorSPX leftMotor = new WPI_VictorSPX(15);
+    private final WPI_VictorSPX rightMotor = new WPI_VictorSPX(14);
+    private DifferentialDrive differentialDrive;
+    private static DifferentialDriveBase instance;
 
-    public static final double kDefaultQuickStopAlpha;
-
-
-    public DifferentialDriveBase(SuperController rightmotor, SuperController leftmotor){
-        rightMotor = new VictorSPX(14);
-        leftMotor = new VictorSPX(15);
+    private DifferentialDriveBase() {
+        differentialDrive = new DifferentialDrive(leftMotor, rightMotor);
     }
 
-    public void arcadeDrive(double xSpeed, double zRotation){
-            xSpeed = 1.0;
-            zRotation = 1.0;
+    public static DifferentialDriveBase getInstance() {
+        if(instance == null) {
+            instance = new DifferentialDriveBase();
+        }
+
+        return instance;
     }
 
+    public DifferentialDrive getDifferentialDrive() {
+        return instance.differentialDrive;
+    }
 }
