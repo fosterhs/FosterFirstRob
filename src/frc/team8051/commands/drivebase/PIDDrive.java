@@ -10,7 +10,7 @@ public class PIDDrive extends PIDCommand {
     private DrivebaseEncoder drivebaseEncoder;
 
     public PIDDrive(DifferentialDrive drivebase, DrivebaseEncoder drivebaseEncoder, double distance) {
-        super(0.30, 0.6, 0.0);
+        super(0.63, 0.1, 0.0);
         this.drivebase = drivebase;
         this.distance = distance;
 
@@ -29,6 +29,14 @@ public class PIDDrive extends PIDCommand {
     }
 
     @Override
+    protected void initialize() {
+        drivebaseEncoder.zeroEncoder();
+        System.out.println("initializing PIDDrive command");
+        System.out.println("encoder left " + drivebaseEncoder.getLeftSensorReading() +
+                " encoder right " + drivebaseEncoder.getRightSensorReading());
+    }
+
+    @Override
     protected double returnPIDInput() {
         double val = (drivebaseEncoder.getLeftSensorReading() + drivebaseEncoder.getRightSensorReading())/2;
         System.out.println("encoder reads" + val + " set point " + getPIDController().getSetpoint());
@@ -38,19 +46,20 @@ public class PIDDrive extends PIDCommand {
     @Override
     protected void usePIDOutput(double output) {
         System.out.println("pid output " + output + " set point " + getPIDController().getSetpoint());
+        System.out.println("P: " + getPIDController().getP() + " I: " +
+                getPIDController().getI() + " D: " + getPIDController().getD());
+
         drivebase.arcadeDrive(output, 0);
     }
 
     @Override
     protected boolean isFinished() {
         System.out.println("isFinished");
-        if(getPIDController().onTarget()) {
-            drivebaseEncoder.zeroEncoder();
-                System.out.println("encoder left " + drivebaseEncoder.getLeftSensorReading() +
-                    " encoder right " + drivebaseEncoder.getRightSensorReading());
-            return true;
-        }
+        return getPIDController().onTarget();
+    }
 
-        return false;
+    @Override
+    protected void end() {
+
     }
 }

@@ -31,8 +31,8 @@ public class OI {
     public void initializeBind() {
         //when LB button is held, we can control joysticks/movement of robot
         System.out.println("binding command to button");
-//        buttonY.whenPressed(new PIDDrive(5.0f));
-//        buttonA.whenPressed(new PIDDrive(-5.0f));
+        buttonY.whenPressed(new PIDDrive(5.0f));
+        buttonA.whenPressed(new PIDDrive(-5.0f));
     }
     public double getRightXAxis() { return joystick.getRawAxis(4); }
     public double getRightYAxis() {

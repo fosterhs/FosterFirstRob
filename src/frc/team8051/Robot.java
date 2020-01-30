@@ -26,12 +26,13 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     oi.initializeBind();
-    testDrive = new TestDrive();
+    //testDrive = new TestDrive();
 
   }
 
   @Override
   public void robotPeriodic() {
+
     Scheduler.getInstance().run();
   }
 
@@ -46,7 +47,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() {
     System.out.println("Running teleopInit()");
-    Scheduler.getInstance().add(testDrive);
+    //Scheduler.getInstance().add(testDrive);
   }
 
   @Override
