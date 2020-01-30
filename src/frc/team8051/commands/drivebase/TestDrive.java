@@ -4,13 +4,17 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.team8051.Robot;
 import frc.team8051.services.OI;
+import frc.team8051.subsystems.DifferentialDriveBase;
 
 public class TestDrive extends Command {
     private OI oi;
     private DifferentialDrive differentialDrive;
-    public TestDrive(OI oi, DifferentialDrive differentDrive) {
+    public TestDrive(OI oi, DifferentialDrive differentialDrive) {
         this.oi = oi;
         this.differentialDrive = differentialDrive;
+        System.out.println("instantiating <TestDrive>");
+        System.out.println("<TestDrive> oi " + oi == null);
+        System.out.println("<TestDrive> differentialDrive " + differentialDrive == null);
     }
 
     public TestDrive() {
@@ -19,7 +23,17 @@ public class TestDrive extends Command {
 
     @Override
     protected void execute() {
-        differentialDrive.tankDrive(oi.getLeftYAxis(), oi.getRightYAxis());
+        System.out.println("executing TestDrive");
+        System.out.println("<TestDrive> oi " + oi == null);
+        System.out.println("<TestDrive> differentialDrive " + differentialDrive == null);
+        double leftYAxis = -oi.getLeftYAxis();
+        double rightYAxis = -oi.getRightYAxis();
+        double deadZone = 0.0078125;
+        if(Math.abs(leftYAxis) <= deadZone) leftYAxis = 0;
+        if(Math.abs(rightYAxis) <= deadZone) rightYAxis = 0;
+        System.out.println("left y axis: " + leftYAxis + " right y axis: " + rightYAxis);
+        // differentialDrive.tankDrive(leftYAxis, rightYAxis);
+        differentialDrive.arcadeDrive(rightYAxis, leftYAxis);
     }
 
     @Override
