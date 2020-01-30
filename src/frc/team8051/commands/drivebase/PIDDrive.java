@@ -2,22 +2,20 @@ package frc.team8051.commands.drivebase;
 import edu.wpi.first.wpilibj.command.PIDCommand;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.team8051.Robot;
-import frc.team8051.sensors.DriveBaseEncoder;
-// import edu.wpi.first.wpilibj.controller.PIDController;
-import edu.wpi.first.wpilibj.PIDController;
+import frc.team8051.sensors.DrivebaseEncoder;
 
 public class PIDDrive extends PIDCommand {
     private DifferentialDrive drivebase;
     private double distance;
-    DriveBaseEncoder drivebaseEncoder;
+    private DrivebaseEncoder drivebaseEncoder;
 
-    public PIDDrive(DifferentialDrive drivebase, double distance) {
+    public PIDDrive(DifferentialDrive drivebase, DrivebaseEncoder drivebaseEncoder, double distance) {
         super(0.30, 0.6, 0.0);
         this.drivebase = drivebase;
         this.distance = distance;
 
-        drivebaseEncoder = Robot.getInstance().getDrivebaseEncoder();
-        drivebaseEncoder.zeroEncoder();
+        this.drivebaseEncoder = drivebaseEncoder;
+        this.drivebaseEncoder.zeroEncoder();
         setSetpoint(this.distance);
         getPIDController().setAbsoluteTolerance(0.1);
         getPIDController().setOutputRange(-1, 1);
@@ -25,7 +23,9 @@ public class PIDDrive extends PIDCommand {
     }
 
     public PIDDrive(double distance) {
-        this(Robot.getInstance().getDifferentialDrive(), distance);
+        this(Robot.getInstance().getDifferentialDrive(),
+             Robot.getInstance().getDrivebaseEncoder(),
+             distance);
     }
 
     @Override

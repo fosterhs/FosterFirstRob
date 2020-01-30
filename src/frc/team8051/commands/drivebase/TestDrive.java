@@ -4,7 +4,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.team8051.Robot;
 import frc.team8051.services.OI;
-import frc.team8051.subsystems.DifferentialDriveBase;
 
 public class TestDrive extends Command {
     private OI oi;
@@ -32,8 +31,8 @@ public class TestDrive extends Command {
         if(Math.abs(leftYAxis) <= deadZone) leftYAxis = 0;
         if(Math.abs(rightYAxis) <= deadZone) rightYAxis = 0;
         System.out.println("left y axis: " + leftYAxis + " right y axis: " + rightYAxis);
-        // differentialDrive.tankDrive(leftYAxis, rightYAxis);
-        differentialDrive.arcadeDrive(rightYAxis, leftYAxis);
+        differentialDrive.tankDrive(leftYAxis, rightYAxis);
+        //differentialDrive.arcadeDrive(rightYAxis, leftYAxis);
     }
 
     @Override

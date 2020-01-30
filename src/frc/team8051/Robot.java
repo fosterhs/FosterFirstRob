@@ -1,7 +1,7 @@
 package frc.team8051;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.team8051.commands.drivebase.TestDrive;
-import frc.team8051.sensors.DriveBaseEncoder;
+import frc.team8051.sensors.DrivebaseEncoder;
 import frc.team8051.subsystems.DifferentialDriveBase;
 import frc.team8051.subsystems.Drivebase;
 import frc.team8051.services.OI;
@@ -14,20 +14,20 @@ public class Robot extends TimedRobot {
   private OI oi;
   private TestDrive testDrive;
   private DifferentialDriveBase differentialDriveBase;
-  private DriveBaseEncoder drivebaseEncoder;
+  private DrivebaseEncoder drivebaseEncoder;
 
   Robot() {
     robot = this;
     oi = new OI();
-    drivebaseEncoder = new DriveBaseEncoder();
+    drivebaseEncoder = new DrivebaseEncoder();
     differentialDriveBase = new DifferentialDriveBase();
-    oi.initializeBind();
-
-    //testDrive = new TestDrive();
   }
 
   @Override
   public void robotInit() {
+    oi.initializeBind();
+    testDrive = new TestDrive();
+
   }
 
   @Override
@@ -46,8 +46,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() {
     System.out.println("Running teleopInit()");
-    drivebaseEncoder.zeroEncoder();
-    //Scheduler.getInstance().add(testDrive);
+    Scheduler.getInstance().add(testDrive);
   }
 
   @Override
@@ -81,7 +80,7 @@ public class Robot extends TimedRobot {
     return differentialDriveBase.getDifferentialDrive();
   }
 
-  public DriveBaseEncoder getDrivebaseEncoder() {
+  public DrivebaseEncoder getDrivebaseEncoder() {
     return drivebaseEncoder;
   }
 }
