@@ -2,11 +2,13 @@ package frc.team8051;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.team8051.commands.drivebase.TestDrive;
 import frc.team8051.sensors.DrivebaseEncoder;
+import frc.team8051.sensors.Gyro;
 import frc.team8051.subsystems.DifferentialDriveBase;
 import frc.team8051.subsystems.Drivebase;
 import frc.team8051.services.OI;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;;
+import edu.wpi.first.wpilibj.PIDController;
 
 public class Robot extends TimedRobot {
   private static Robot robot;
@@ -15,19 +17,22 @@ public class Robot extends TimedRobot {
   private TestDrive testDrive;
   private DifferentialDriveBase differentialDriveBase;
   private DrivebaseEncoder drivebaseEncoder;
+  private Gyro gyro;
 
   Robot() {
     robot = this;
     oi = new OI();
-    drivebaseEncoder = new DrivebaseEncoder();
     differentialDriveBase = new DifferentialDriveBase();
+    drivebaseEncoder = new DrivebaseEncoder();
+
+    gyro = new Gyro();
+    gyro.calibrate();
   }
 
   @Override
   public void robotInit() {
     oi.initializeBind();
-    //testDrive = new TestDrive();
-
+//    testDrive = new TestDrive();
   }
 
   @Override
@@ -47,7 +52,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() {
     System.out.println("Running teleopInit()");
-    //Scheduler.getInstance().add(testDrive);
+//    Scheduler.getInstance().add(testDrive);
   }
 
   @Override
@@ -83,5 +88,9 @@ public class Robot extends TimedRobot {
 
   public DrivebaseEncoder getDrivebaseEncoder() {
     return drivebaseEncoder;
+  }
+
+  public Gyro getGyro() {
+    return gyro;
   }
 }

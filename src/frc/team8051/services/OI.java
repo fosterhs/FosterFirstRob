@@ -4,6 +4,7 @@ Code for controller
 package frc.team8051.services;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
+import frc.team8051.commands.drivebase.RotateDrivebase;
 import frc.team8051.constants.RobotMap;
 import frc.team8051.commands.drivebase.RunTankDrive;
 import frc.team8051.commands.drivebase.RunDifferentialDrive;
@@ -33,6 +34,7 @@ public class OI {
         System.out.println("binding command to button");
         buttonY.whenPressed(new PIDDrive(5.0f));
         buttonA.whenPressed(new PIDDrive(-5.0f));
+        buttonX.whenPressed(new RotateDrivebase(180));
     }
     public double getRightXAxis() { return joystick.getRawAxis(4); }
     public double getRightYAxis() {
